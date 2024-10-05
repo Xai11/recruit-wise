@@ -13,7 +13,7 @@ public class Admin {
 
     private String name;
 
-    private String ApiKeyHH; //регаемся на https://api.hh.ru/ и получаем ключ
+
 
 
 }
