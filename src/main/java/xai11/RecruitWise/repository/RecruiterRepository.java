@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import xai11.RecruitWise.model.Recruiter;
 
 @Repository
-public interface RecruiterRepo extends JpaRepository<Recruiter,Long> {
+public interface RecruiterRepository extends JpaRepository<Recruiter,Long> {
 
 }

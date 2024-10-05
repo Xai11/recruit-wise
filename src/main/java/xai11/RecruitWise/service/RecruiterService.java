@@ -3,7 +3,7 @@ package xai11.RecruitWise.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xai11.RecruitWise.model.Recruiter;
-import xai11.RecruitWise.repository.RecruiterRepo;
+import xai11.RecruitWise.repository.RecruiterRepository;
 
 import java.util.List;
 
@@ -11,18 +11,18 @@ import java.util.List;
 public class RecruiterService {
 
     @Autowired
-    private RecruiterRepo recruiterRepo;
+    private RecruiterRepository recruiterRepository;
 
     private List<Recruiter> recruiters;
 
-    public Recruiter getRecr(Long id){
-        return recruiterRepo.findById(id).orElse(null);
+    public Recruiter getRecruiter(Long id){
+        return recruiterRepository.findById(id).orElse(null);
     }
 
-    public void saveRecr(String name, String mail){
-        Recruiter recr = new Recruiter();
-        recr.setName(name);
-        recr.setMail(mail);
-        recruiterRepo.save(recr);
+    public void saveRecruiter(String name, String mail){
+        Recruiter recruiter = new Recruiter();
+        recruiter.setName(name);
+        recruiter.setMail(mail);
+        recruiterRepository.save(recruiter);
     }
 }

@@ -8,7 +8,7 @@ import xai11.RecruitWise.model.Vacancy;
 
 import java.util.List;
 @Repository
-public interface VacancyRepo extends JpaRepository<Vacancy,Long> {
+public interface VacancyRepository extends JpaRepository<Vacancy,Long> {
     List<Vacancy> findAllByActiveTrue();
 
     List<Vacancy> findAllByOrderByNumbResumesDesc();

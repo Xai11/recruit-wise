@@ -36,14 +36,14 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancies")
-    public List<Vacancy> getAllVac() {
-        return vacancyService.allVac();
+    public List<Vacancy> getAllVacancies() {
+        return vacancyService.allVacancies();
     }
 
     @DeleteMapping("/vacancies/{id}")
     public ResponseEntity<String> deleteVacancy(@PathVariable Long id) {
         vacancyService.deleteVacancy(id);
-        return ResponseEntity.ok("Вакансия удалена");
+        return ResponseEntity.ok("");
     }
 
     @GetMapping("/vacancies/byResumes/{minResumes}")
@@ -63,7 +63,7 @@ public class VacancyController {
 
     @GetMapping("/vacancies/byRecruiter/{recruiterId}")
     public List<Vacancy> getVacanciesByRecruiter(@PathVariable Long recruiterId) {
-        Recruiter recruiter = recruiterService.getRecr(recruiterId);
+        Recruiter recruiter = recruiterService.getRecruiter(recruiterId);
         return vacancyService.getVacanciesByRecruiter(recruiter);
     }
 

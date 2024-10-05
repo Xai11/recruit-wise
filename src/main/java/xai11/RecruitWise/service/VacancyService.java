@@ -1,62 +1,66 @@
 package xai11.RecruitWise.service;
 
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xai11.RecruitWise.model.Recruiter;
 import xai11.RecruitWise.model.Vacancy;
-import xai11.RecruitWise.repository.VacancyRepo;
+import xai11.RecruitWise.repository.VacancyRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class VacancyService {
 
     @Autowired
-    private VacancyRepo vacancyRepo;
-
+    private VacancyRepository vacancyRepository;
     private List<Vacancy> vacancies;
 
     public Vacancy getVacancy (Long id){
-        return vacancyRepo.findById(id).orElse(null);
+        return vacancyRepository.findById(id).orElse(null);
     }
 
     public void saveVacancy (String name) {
         Vacancy vacancy = new Vacancy();
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Time now: " + now);
         vacancy.setName(name);
-        vacancyRepo.save(vacancy);
+        vacancy.setCreateVac(now);
+        vacancy.setActive(true);
+        vacancyRepository.save(vacancy);
     }
 
-    public List<Vacancy> allVac(){
-        return vacancyRepo.findAll();
+    public List<Vacancy> allVacancies(){
+        return vacancyRepository.findAll();
     }
 
     public void deleteVacancy(Long id) {
-        Vacancy vacancy = vacancyRepo.findById(id).orElseThrow(() -> new RuntimeException("Вакансия не найдена"));
-        vacancyRepo.delete(vacancy);
+        Vacancy vacancy = vacancyRepository.findById(id).orElseThrow(() -> new RuntimeException(""));
+        vacancyRepository.delete(vacancy);
     }
 
     public List<Vacancy> getActiveVacancies() {
-        return vacancyRepo.findAllByActiveTrue();
+        return vacancyRepository.findAllByActiveTrue();
     }
 
     public List<Vacancy> getVacanciesByResumes(int minResumes) {
-        return vacancyRepo.findAllByNumbResumesGreaterThanEqual(minResumes);
+        return vacancyRepository.findAllByNumbResumesGreaterThanEqual(minResumes);
     }
 
     public List<Vacancy> getSortedVacanciesByResumes() {
-        return vacancyRepo.findAllByOrderByNumbResumesDesc();
+        return vacancyRepository.findAllByOrderByNumbResumesDesc();
     }
 
     public List<Vacancy> getSortedVacanciesByInterviews() {
-        return vacancyRepo.findAllByOrderByInviteInterviewDesc();
+        return vacancyRepository.findAllByOrderByInviteInterviewDesc();
     }
 
     public List<Vacancy> getVacanciesByInvites(int minInvites) {
-        return vacancyRepo.findAllByInviteInterviewGreaterThanEqual(minInvites);
+        return vacancyRepository.findAllByInviteInterviewGreaterThanEqual(minInvites);
     }
 
     public List<Vacancy> getVacanciesByRecruiter(Recruiter recruiter) {
-        return vacancyRepo.findAllByRecruiter(recruiter);
+        return vacancyRepository.findAllByRecruiter(recruiter);
     }
 }

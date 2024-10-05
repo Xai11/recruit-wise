@@ -12,12 +12,12 @@ public class RecruiterController {
 
     @GetMapping("/recruiter/{id}")
     public Recruiter getRecr(Long id){
-        return recruiterService.getRecr(id);
+        return recruiterService.getRecruiter(id);
     }
 
     @PostMapping("/recruiter/registration")
     public void saveRecruiter(@RequestBody Recruiter recruiter){
-        recruiterService.saveRecr(recruiter.getName(), recruiter.getMail());
+        recruiterService.saveRecruiter(recruiter.getName(), recruiter.getMail());
     }
 
 
