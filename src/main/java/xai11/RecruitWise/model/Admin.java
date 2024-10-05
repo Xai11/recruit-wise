@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "admin")
+
 public class Admin {
-    @Id
+
 
     private Long id;
 

@@ -34,7 +34,6 @@ public class Vacancy {
     private int joinWork; //сколько трудоустроили
     @Column
     private Boolean active; //вакансия активна или в ахиве
-    @Column
     @JoinColumn(name = "recruiter_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruiter recruiter;

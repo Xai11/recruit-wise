@@ -9,8 +9,6 @@ import java.util.List;
 
 @Service
 public class RecruiterService {
-    @Autowired
-    private RecruiterService recruiterService;
 
     @Autowired
     private RecruiterRepo recruiterRepo;
