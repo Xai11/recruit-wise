@@ -1,5 +1,7 @@
 package xai11.RecruitWise.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,10 +34,17 @@ public class Vacancy {
     @Column
     private int inviteInterview; //скольких пригласили на интервью
     @Column
+    private int finishInterview; //прошли интервью
+    @Column
+    private int resignation; //количество отказавшихся после прохождения интервью
+    @Column
     private int joinWork; //сколько трудоустроили
     @Column
     private Boolean active; //вакансия активна или в ахиве
     @JoinColumn(name = "recruiter_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruiter recruiter;
+
+    @OneToMany(mappedBy = "vacancy")
+    private List<Rejection> rejections;
 }

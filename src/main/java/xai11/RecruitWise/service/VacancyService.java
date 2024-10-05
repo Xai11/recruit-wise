@@ -3,6 +3,7 @@ package xai11.RecruitWise.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xai11.RecruitWise.model.Recruiter;
+import xai11.RecruitWise.model.Rejection;
 import xai11.RecruitWise.model.Vacancy;
 import xai11.RecruitWise.repository.VacancyRepository;
 
@@ -29,6 +30,10 @@ public class VacancyService {
         vacancy.setCreateVac(now);
         vacancy.setActive(true);
         vacancyRepository.save(vacancy);
+    }
+
+    public List<Rejection> getRejectionsByVacancyId(Long vacancyId) {
+        return vacancyRepository.findRejectionsByVacancyId(vacancyId);
     }
 
     public List<Vacancy> allVacancies(){

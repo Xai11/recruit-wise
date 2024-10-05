@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xai11.RecruitWise.model.Recruiter;
+import xai11.RecruitWise.model.Rejection;
 import xai11.RecruitWise.model.Vacancy;
 import xai11.RecruitWise.service.RecruiterService;
 import xai11.RecruitWise.service.VacancyService;
@@ -25,6 +26,10 @@ public class VacancyController {
         this.vacancyService = vacancyService;
     }
 
+    @GetMapping("/vacancies/rejections/{id}")
+    public List<Rejection> getRejectionsByVacancyId(@PathVariable Long id) {
+        return vacancyService.getRejectionsByVacancyId(id);
+    }
     @GetMapping("/vacancies/{id}")
     public Vacancy getVacancy(@PathVariable Long id) {
         return vacancyService.getVacancy(id);
