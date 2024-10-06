@@ -1,7 +1,16 @@
+FROM openjdk:22-jdk-slim as build
+
+WORKDIR /home/Project_Start
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package
+
 FROM openjdk:22-jdk-slim
 
 WORKDIR /home/Project_Start
 
-COPY recruitwise.jar .
+COPY --from=build /home/Project_Start/target/recruitwise.jar .
 
 CMD ["java", "-jar", "recruitwise.jar"]
