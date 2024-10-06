@@ -2,19 +2,19 @@ version: '3.1'
 
 services:
   app:
-    image: '4ddc905f1655'
+    build: .
     container_name: recruitwise_app
     ports:
       - '127.0.0.1:8080:8080'
     environment:
-      - DB_USER=postgres
+      - DB_USER=developer
       - DB_URL=jdbc:postgresql://db:5432/recruit_db
-      - DB_PASSWORD=root
+      - DB_PASSWORD=DeveloperRoot
     depends_on:
       - db
   db:
     image: "postgres"
     container_name: db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=DeveloperRoot
