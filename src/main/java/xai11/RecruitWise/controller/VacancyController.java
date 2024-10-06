@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import xai11.RecruitWise.model.Recruiter;
 import xai11.RecruitWise.model.Rejection;
 import xai11.RecruitWise.model.Vacancy;
+import xai11.RecruitWise.model.VacancyPatchRequest;
 import xai11.RecruitWise.service.RecruiterService;
 import xai11.RecruitWise.service.VacancyService;
 
@@ -30,6 +31,13 @@ public class VacancyController {
     public List<Rejection> getRejectionsByVacancyId(@PathVariable Long id) {
         return vacancyService.getRejectionsByVacancyId(id);
     }
+
+    @PatchMapping("/vacancies/update/{vacancyId}")
+    public ResponseEntity<Void> updateVacancy(@PathVariable Long vacancyId, @RequestBody VacancyPatchRequest request) {
+        vacancyService.updateVacancy(vacancyId, request);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/vacancies/{id}")
     public Vacancy getVacancy(@PathVariable Long id) {
         return vacancyService.getVacancy(id);
@@ -37,6 +45,7 @@ public class VacancyController {
 
     @PostMapping("/vacancies/add")
     public void saveVacancy(@RequestBody Vacancy vacancy) {
+        System.out.println(vacancy.toString());
         vacancyService.saveVacancy(vacancy.getName());
     }
 

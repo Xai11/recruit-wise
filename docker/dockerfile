@@ -1,0 +1,7 @@
+FROM openjdk:22-jdk-slim
+
+WORKDIR /home/Project_Start
+
+COPY recruitwise.jar .
+
+CMD ["java", "-jar", "recruitwise.jar"]

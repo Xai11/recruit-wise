@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import xai11.RecruitWise.model.Recruiter;
 import xai11.RecruitWise.model.Rejection;
 import xai11.RecruitWise.model.Vacancy;
+import xai11.RecruitWise.model.VacancyPatchRequest;
 import xai11.RecruitWise.repository.VacancyRepository;
 
 import java.time.LocalDate;
@@ -29,6 +30,31 @@ public class VacancyService {
         vacancy.setName(name);
         vacancy.setCreateVac(now);
         vacancy.setActive(true);
+        vacancyRepository.save(vacancy);
+    }
+
+    public void updateVacancy(Long vacancyId, VacancyPatchRequest request) {
+        Vacancy vacancy = vacancyRepository.findById(vacancyId).orElseThrow();
+
+        if (request.getNumbResumes() != null) {
+            vacancy.setNumbResumes(request.getNumbResumes());
+        }
+        if (request.getInviteInterview() != null) {
+            vacancy.setInviteInterview(request.getInviteInterview());
+        }
+        if (request.getFinishInterview() != null) {
+            vacancy.setFinishInterview(request.getFinishInterview());
+        }
+        if (request.getResignation() != null) {
+            vacancy.setResignation(request.getResignation());
+        }
+        if (request.getJoinWork() != null) {
+            vacancy.setJoinWork(request.getJoinWork());
+        }
+        if (request.getActive() != null) {
+            vacancy.setActive(request.getActive());
+        }
+
         vacancyRepository.save(vacancy);
     }
 
